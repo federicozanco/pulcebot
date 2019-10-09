@@ -149,6 +149,7 @@ class PulceBot(sleekxmpp.ClientXMPP):
                 help += 'ip => returns the external/WAN IP address\n'
                 help += 'exec <command> => exec <command> and returns output (timeout = 60s)\n'
                 help += 'exect <timeout> <command> => exec <command> and returns output (timeout = <timeout>s)\n'
+                help += 'ping => replays with pong. What did you expect?!\n'
                 msg.reply(help).send()
             elif cmd == 'ip':
                 try:
