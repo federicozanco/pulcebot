@@ -29,6 +29,7 @@ $ python3 pulcebot.py -d -j pulcebot@dirtykid.com -p "pulcepassword"
 - ip: returns the external/WAN IP address;
 - exec <command>: executes <command> and returns output (timeout = 60s);
 - exect <timeout> <command>: executes <command> and returns output (timeout = <timeout>s)\n'
+- ping: just ping the bot;
 
 ## get-wan-ip shell script example
 ```
@@ -163,7 +164,7 @@ class PulceBot(sleekxmpp.ClientXMPP):
                 except subprocess.TimeoutExpired as e:
                     msg.reply(msg['body'] + ' timeout:\n\n' + e.output.decode('utf8')).send()
                 except subprocess.CalledProcessError as e:
-                     msg.reply(msg['body'] + ' error:\n\n' + e.output.decode('utf8')).send()
+                    msg.reply(msg['body'] + ' error:\n\n' + e.output.decode('utf8')).send()
             elif cmd == 'exec':
                 try:
                     del tokens[0]
@@ -173,6 +174,8 @@ class PulceBot(sleekxmpp.ClientXMPP):
                     msg.reply(msg['body'] + ' timeout:\n\n' + e.output.decode('utf8')).send()
                 except subprocess.CalledProcessError as e:
                     msg.reply(msg['body'] + ' error:\n\n' + e.output.decode('utf8')).send()
+            elif cmd == 'ping':
+                msg.reply('pong').send()
 
 if __name__ == '__main__':
     # Setup the command line arguments.
